@@ -1,11 +1,14 @@
 extends layout
 
 block content
-  script.
-    var socket = io('#{protocol}://#{host}');
-    socket.on('news', function (data) {
-      socket.emit('my other event', { file: 'data' });
-    });
-  h1= host
-  h2= protocol
-  p Welcome to #{host}
+  .container
+    form#contact(action='', onSubmit="App.captureForm()", method='post')
+      h3 Chatter
+      h4 A sample app for every chat
+      fieldset
+        input(placeholder='Your name', id='name' type='text', tabindex='1', required='', autofocus='')
+      fieldset
+        button#contact-submit(name='submit', type='submit', data-submit='...Sending') Submit
+      p.copyright
+        | Developed by 
+        a(href='https://github.com/muhammadfaizan/chatter', target='_blank', title='Muhammad Faizan') Muhammad Faizan
