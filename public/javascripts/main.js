@@ -1,11 +1,11 @@
 var App = (function() {
     return {
-        onNameFormSubmit: function(event) {
-            event.preventDefault();
-            debugger;
-            socket.emit('sName', {
-                name: ''
-            })
+        onNameFormSubmit: function(evt) {
+            evt.preventDefault();
+            socket.emit('setName', {
+                name: evt.target.name.value
+            });
+            return false;
         }
     };
 })();
