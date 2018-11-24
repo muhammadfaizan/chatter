@@ -1,6 +1,8 @@
 extends layout
 
 block content
+
+  script(src='/javascripts/main.js', type='text/javascript')
   .container
     form#contact(action='javascript:;', onSubmit="App.onNameFormSubmit(event)", method='post')
       h3 Chatter
