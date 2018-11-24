@@ -30,7 +30,7 @@ server.on('error', onError, debug);
 server.on('listening', onListening, () => {
   debug('listening on ', port);
 });
-io.on('connection', function(socket){
+io.on('connection', function (socket) {
   console.log('a user connected');
 });
 /**
