@@ -1,16 +1,22 @@
 extends layout
-
+block styles
+  link(rel='stylesheet', href='/stylesheets/chat.css')
+block scripts
+  script(src='/javascripts/chat.js', type='text/javascript')
 block content
-
-  script(src='/javascripts/main.js', type='text/javascript')
   .chatroom
     form#chat-section(action='javascript:;', onSubmit="App.onMessage(event)", method='post')
       h3 Chat Room
-      .message-section
+      #room.message-section
+        .message.own
+            | my message is peace
+        .message.other
+            | my other message is war
+      .text-wrapper
+        fieldset
+          textarea(placeholder='Your Message', autocomplete='off', id='message', row='5', type='textarea', tabindex='1', required='', autofocus='')
       fieldset
-        input(placeholder='Your Message', id='name' type='text', tabindex='1', required='', autofocus='')
-      fieldset
-        button#contact-submit(name='submit', type='submit', data-submit='...Sending') Submit
+        button#chat-submit(name='submit', type='submit', data-submit='...Sending') Submit
       p.copyright
         | Developed by 
         a(href='https://github.com/muhammadfaizan/chatter', target='_blank', title='Muhammad Faizan') Muhammad Faizan
