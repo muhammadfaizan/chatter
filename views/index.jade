@@ -1,8 +1,9 @@
 extends layout
-
-block content
-
+block styles
+  link(rel='stylesheet', href='/stylesheets/main.css')
+block scripts
   script(src='/javascripts/main.js', type='text/javascript')
+block content
   .container
     form#contact(action='javascript:;', onSubmit="App.onNameFormSubmit(event)", method='post')
       h3 Chatter
