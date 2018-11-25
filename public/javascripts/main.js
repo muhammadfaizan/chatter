@@ -2,14 +2,18 @@ var App = (function () {
     function logAndAlert(data) {
         console.log(data);
     }
-    socket.on('acknowledged', logAndAlert);
-    // socket.on('news', logAndAlert);
+    socket.on('acknowledged', function (data) {
+        if (data && data.success) {
+            window.location.href = "/chat"
+        }
+    });
     return {
         onNameFormSubmit: function (evt) {
             evt.preventDefault();
-            socket.emit('setName', {
-                name: evt.target.name.value
-            });
+            if (evt.target.name && evt.target.name.value)
+                socket.emit('setName', {
+                    name: evt.target.name.value
+                });
             return false;
         }
     };
