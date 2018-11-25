@@ -10,10 +10,10 @@ var App = (function () {
         })
     });
     */
-    socket.on('username', function (data) {
-        debugger;
-        console.log(data);
-    });
+    // socket.on('username', function (data) {
+    //     debugger;
+    //     console.log(data);
+    // });
     return {
         onNameFormSubmit: function (evt) {
             evt.preventDefault();
@@ -22,6 +22,7 @@ var App = (function () {
                 //     name: evt.target.name.value
                 // });
                 window.sessionStorage.setItem('username', evt.target.name.value.trim());
+                window.location.href = "/chat"
             }
             return false;
         }
