@@ -17,7 +17,8 @@ const SocketController = {
      */
     registerEvents: (socket) => [
         new socketEvent('setName', SocketController.setName.bind(socket)),
-        new socketEvent('clientInfo', SocketController.clientInformationHandler.bind(socket))
+        new socketEvent('clientInfo', SocketController.clientInformationHandler.bind(socket)),
+        new socketEvent('messageToRoom', SocketController.onMessageReceived.bind(socket))
     ].map(evt => {
         socket.on(evt.eventName, evt.handler);
     }),
@@ -25,6 +26,14 @@ const SocketController = {
     setName: function (data) {
         this.username = data.name;
         this.emit('acknowledged', { success: true });
+    },
+
+    onMessageReceived: function (data) {
+        const { content } = data;
+        this.broadcast.emit('room:message', {
+            username: this.username || 'unidentified',
+            content
+        })
     },
 
     clientInformationHandler: function (requiredKeys) {

@@ -7,14 +7,16 @@ block content
   .chatroom
     form#chat-section(action='javascript:;', onSubmit="App.onMessage(event)", method='post')
       h3 Chat Room
-      #room.message-section
+      #room.message-section.custom
         .message.own
-            | my message is peace
+            p.content my message is peace
+            p.username ~ You
         .message.other
-            | my other message is war
+            p.content my message is war
+            p.username ~ Muhammad Faizan
       .text-wrapper
         fieldset
-          textarea(placeholder='Your Message', autocomplete='off', id='message', row='5', type='textarea', tabindex='1', required='', autofocus='')
+          textarea(onkeyup='App.messageKeyPressHandler(event)', placeholder='Your Message', autocomplete='off', id='message', row='5', type='textarea', tabindex='1', required='', autofocus='')
       fieldset
         button#chat-submit(name='submit', type='submit', data-submit='...Sending') Submit
       p.copyright
